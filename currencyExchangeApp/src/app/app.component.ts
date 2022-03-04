@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { NavBarComponent} from './nav-bar/nav-bar.component';
 
 @Component({
   selector: 'app-root',
@@ -17,9 +18,8 @@ export class AppComponent {
     this.tryResp=response
     console.log(response)
   })
-
   }
 
   title = 'currenntExchangeApp';
 }
-//hej
+
