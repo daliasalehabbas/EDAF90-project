@@ -1,15 +1,32 @@
 <div class="card-container row h-200 p-5 bg-light border rounded-10">
-  
     <button type="button" class="btn btn-primary" (click)="method('2020-12-24','USD','EUR')">Test API call knapp</button>
-
 </div>
 
 <form>
+  Incredibly basic implementation so far, trying to make it actually work before making it look better
   <div class="form-group">
-    <label for="date">Select date</label>
+    <label for="startDate">Select start date</label>
     <input
-      id="date"
+      id="startDate"
       type="date"/>
+  </div>
+  <div class="form-group">
+    <label for="startDate">Select end date</label>
+    <input
+      id="startDate"
+      type="date"/>
+  </div>
+  <div class="form-group">
+    <label for="base">Select base currency</label>
+    <select className="form.select" id="base">
+      <option *ngFor="let curr of currencies" value={{curr}}>{{curr}}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="base">Select currencies to be compared</label>
+    <select className='form-select' id="base" multiple>
+      <option *ngFor="let curr of currencies" value={{curr}}>{{curr}}</option>
+    </select>
   </div>
   <input className="btn btn-primary" type="submit" value="Submit" />
 </form>

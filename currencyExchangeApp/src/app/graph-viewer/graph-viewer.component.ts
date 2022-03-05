@@ -8,8 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GraphViewerComponent implements OnInit {
   tryResp:any;
+  currencies:any;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+    //Finns det smartare sätt att skriva ut alla valutor? Funderade på att hämta ut dem
+    //m.h.a http, men ska man behöva skicka en get request varje gång man öppnar denna sidan?
+    this.currencies = ['AED', 'AFN', 'ALL', 'AMD', 'ANG', 'AOA', 'ARS', 'AUD', 'AWG', 'AZN',
+                       'BAM', 'BBD', 'BDT', 'BGN', 'BHD', 'BIF'];
+  }
 
   ngOnInit(): void {
 
