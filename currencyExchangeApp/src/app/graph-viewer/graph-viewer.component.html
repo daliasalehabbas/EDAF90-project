@@ -12,33 +12,47 @@
 <div class="content" role="main">
 
   <div class="card-container row h-200 p-5 bg-light border rounded-10">
+
     <button type="button" class="btn btn-primary" (click)="method('BTC,ETH','EUR,USD')">
       Test API callknapp 
     </button>
+
   </div>
 
   <form>
     Incredibly basic implementation so far, trying to make it actually work before making it look better
     <div class="form-group">
       <label for="startDate">Select start date</label>
-      <input [(ngModel)]="startDate" name="startDate" id="startDate" type="date" />
+      <input required [(ngModel)]="startDate" name="startDate" id="startDate" type="date" #ngStartDate="ngModel"/>
+      <div class='alert alert-danger' *ngIf="ngStartDate.touched && !ngStartDate.valid">
+        You need to pick a starting date
+      </div>
     </div>
     <div class="form-group">
       <label for="endDate">Select end date</label>
-      <input [(ngModel)]="endDate" name="endDate" id="endDate" type="date" />
+      <input required [(ngModel)]="endDate" name="endDate" id="endDate" type="date" #ngEndDate="ngModel"/>
+      <div class='alert alert-danger' *ngIf="ngEndDate.touched && !ngEndDate.valid">
+        You need to pick a ending date
+      </div>
     </div>
     <div class="form-group">
       <label for="base">Select base currency</label>
-      <select [(ngModel)]="base" name="base" className="form-select" id="base">
+      <select required [(ngModel)]="base" name="base" className="form-select" id="base" #ngBase="ngModel">
         <option *ngFor="let curr of currencies" value={{curr}}>{{curr}}</option>
       </select>
+      <div class='alert alert-danger' *ngIf="ngBase.touched && !ngBase.valid">
+        You need to pick a base currency
+      </div>
     </div>
     <div class="form-group">
       <label for="symbols">Select currencies to be compared</label>
-      <select [(ngModel)]="symbols" name="symbols" className='form-select' id="symbols" multiple>
+      <select required [(ngModel)]="symbols" name="symbols" className='form-select' id="symbols" multiple #ngSymbols="ngModel">
         <option *ngFor="let curr of currencies" value={{curr}}>{{curr}}</option>
       </select>
+      <div class='alert alert-danger' *ngIf="ngSymbols.touched && !ngSymbols.valid">
+        You need to pick one or more currencies to be compared
+      </div>
     </div>
-    <input className="btn btn-primary" type="submit" value="Submit"/>
+    <input className="btn btn-primary" type="submit" value="Submit" />
   </form>
 </div>

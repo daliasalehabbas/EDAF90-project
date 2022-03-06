@@ -8,23 +8,30 @@ import { GlobalService } from '../global.service';
   styleUrls: ['./graph-viewer.component.css']
 })
 export class GraphViewerComponent implements OnInit {
-  tryResp:any;
+  tryResp: any;
+  startDate: any;
+  endDate: any;
+  base: any;
+  symbols: any;
   currencies:any;
-  startDate:any;
-  endDate:any;
-  base:any;
-  symbols:any;
+
 
   constructor(private global: GlobalService) {
+
+    this.startDate = "";
+    this.endDate = "";
+    this.base = "";
+    this.symbols = [];
+    this.currencies = []
 
   }
 
   ngOnInit(): void {
 
   }
-  
   method(coins:string, currencies:string ){
     this.global.get_Price(coins, currencies)
+
   }
 
 }
