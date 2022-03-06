@@ -12,7 +12,7 @@
 <div class="content" role="main">
 
   <div class="card-container row h-200 p-5 bg-light border rounded-10">
-    <button type="button" class="btn btn-primary" (click)="method('2020-12-24','USD','EUR')">Test API call
+    <button type="button" class="btn btn-primary" (click)="method(startDate,base,symbols)">Test API call
       knapp</button>
   </div>
 
@@ -20,24 +20,24 @@
     Incredibly basic implementation so far, trying to make it actually work before making it look better
     <div class="form-group">
       <label for="startDate">Select start date</label>
-      <input id="startDate" type="date" />
+      <input [(ngModel)]="startDate" name="startDate" id="startDate" type="date" />
     </div>
     <div class="form-group">
-      <label for="startDate">Select end date</label>
-      <input id="startDate" type="date" />
+      <label for="endDate">Select end date</label>
+      <input [(ngModel)]="endDate" name="endDate" id="endDate" type="date" />
     </div>
     <div class="form-group">
       <label for="base">Select base currency</label>
-      <select className="form.select" id="base">
+      <select [(ngModel)]="base" name="base" className="form-select" id="base">
         <option *ngFor="let curr of currencies" value={{curr}}>{{curr}}</option>
       </select>
     </div>
     <div class="form-group">
-      <label for="base">Select currencies to be compared</label>
-      <select className='form-select' id="base" multiple>
+      <label for="symbols">Select currencies to be compared</label>
+      <select [(ngModel)]="symbols" name="symbols" className='form-select' id="symbols" multiple>
         <option *ngFor="let curr of currencies" value={{curr}}>{{curr}}</option>
       </select>
     </div>
-    <input className="btn btn-primary" type="submit" value="Submit" />
+    <input className="btn btn-primary" type="submit" value="Submit"/>
   </form>
 </div>
