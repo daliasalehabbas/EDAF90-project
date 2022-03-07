@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {AppComponent} from '../app.component'
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { FormBuilder, Validators } from '@angular/forms';
+
 
 
 @Component({
@@ -12,21 +14,32 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 
 export class ExchangesideComponent implements OnInit {
   
-   private currencies:Array<String>;
+  currencies:Array<String>;
+  regForm:any;
   
-  constructor(private httpClient: HttpClient) {
-    this.currencies=[];
+  constructor(private httpClient: HttpClient, private formBuilder: FormBuilder) {
+    this.currencies=new Array();
    }
 
    getAllRates(){
   console.log("we are in")
    let model = new AppComponent(this.httpClient);
-   let response = model.method('').subscribe(res => console.log("hej", res))
+   let response = model.method('').subscribe(res =>{  this.currencies = Object.keys(Object.create(res).rates) })
+   console.log("currencies", this.currencies)
   //  let rates=Object.keys(Object.create(response).rates)
-   console.log("rates", response)
+
+   }
+
+   getValues(total:string, from:string, to:string){
+    console.log("toootal", total, from, to)
    }
 
   ngOnInit(): void {
+    this.getAllRates()
+    this.regForm=this.formBuilder.group({})
+
   }
+
+  
 
 }

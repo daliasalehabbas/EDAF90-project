@@ -1,6 +1,47 @@
+'
+<style>
+.setHeight {
+  height: 34px;
+}
 
-<div>
-<p>exchangeside works!</p>
+.button{
+    width: 153px;
+    height: 34px;
+    margin-left: 7.5px;
+    margin-top: 10px;
+    font-size: medium;
 
-<button type="button" class="btn btn-primary" (click)="getAllRates()">My knapp</button>
+}
+
+</style>
+
+
+<div class="row cols">
+
+    <form class="col" >
+        <label for="power"> Total</label>
+        <input  type="number" placeholder="$" class="form-control " id="power" name="total" #total required>
+    </form>
+
+
+    <form class="col">
+    <label for="power"> From currency</label>
+    <select class="form-select setHeight" id="power" #from required>
+    <option *ngFor="let fromcurr of currencies" [value]="fromcurr">{{fromcurr}}</option>
+    </select>
+    </form>
+
+    <form class="col">
+    <label for="power"> To currency</label>
+    <select ngClass="form-select setHeight" id="power" #to required>
+    <option *ngFor="let toCurr of currencies" [value]="toCurr">{{toCurr}}</option>
+    </select>
+    </form>
+
+    <label for="power"> </label>
+    <button (click)="getValues(total.value, from.value, to.value)" type="button" class=" btn btn-primary button" >Convert</button> 
+
+
+    
+
 </div>
