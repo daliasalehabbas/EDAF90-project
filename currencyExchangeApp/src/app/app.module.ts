@@ -11,6 +11,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GraphViewerComponent } from './graph-viewer/graph-viewer.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
+    ReactiveFormsModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,

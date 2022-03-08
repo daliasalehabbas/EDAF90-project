@@ -27,7 +27,7 @@ export class GraphViewerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fill_currencies()
+    // this.fill_currencies()
   }
 
 
@@ -37,11 +37,11 @@ export class GraphViewerComponent implements OnInit {
     })
   }
 
-  async fill_currencies(){
-    await this.global.coins().then(resp => {
-      this.cryptos = (Object.keys(Object.values(resp)[5]));
-    })
-  }
+  // async fill_currencies(){
+  //   await this.global.coins().then(resp => {
+  //     this.cryptos = (Object.keys(Object.values(resp)[5]));
+  //   })
+  // }
 
   async get_historic_rates(coin: string, currency: string, startDate: string, endDate?: string) {
     if (endDate) {

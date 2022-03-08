@@ -1,1 +1,56 @@
-<p>exchangeside works!</p>
+
+<style>
+.setHeight {
+  height: 34px;
+}
+
+.button{
+    width: 153px;
+    height: 34px;
+    margin-left: 7.5px;
+    margin-top: 10px;
+    font-size: medium;
+
+}
+
+</style>
+<style>
+    .main {
+      margin: 82px auto 32px;
+      padding: 0 16px;
+      max-width: 960px;
+      flex-direction: column;
+      align-items: center;
+    }
+  </style>
+
+
+
+<div ngClass="row cols main">
+
+    <form class="col" >
+        <label for="power"> Total</label>
+        <input  type="number" placeholder="$" class="form-control " id="power" name="total" #total required>
+    </form>
+
+
+    <form class="col">
+    <label for="power"> From currency</label>
+    <select class="form-select setHeight" id="power" #from required>
+    <option *ngFor="let fromcurr of currencies" [value]="fromcurr">{{fromcurr}}</option>
+    </select>
+    </form>
+
+    <form class="col">
+    <label for="power"> To currency</label>
+    <select ngClass="form-select setHeight" id="power" #to required>
+    <option *ngFor="let toCurr of cryptos" [value]="toCurr">{{toCurr}}</option>
+    </select>
+    </form>
+
+    <label for="power"> </label>
+    <button (click)="getValues(total.value, from.value, to.value)" type="button" class=" btn btn-primary button" >Convert</button> 
+
+    
+
+</div>

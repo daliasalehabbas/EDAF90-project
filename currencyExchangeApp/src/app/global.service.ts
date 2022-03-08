@@ -23,7 +23,7 @@ export class GlobalService {
     this.__historicValues = [];
   }
 
-  async get_Price(crypto_coins: string, currencies: string) {
+  get_Price(crypto_coins: string, currencies: string) {
     return lastValueFrom(this.http.get("https://min-api.cryptocompare.com/data/pricemulti?fsyms=" + crypto_coins + "&tsyms=" + currencies +
       "&?api_key=5c70d697f3b115912447a3065e90b28a69392271de80403eb2548a0f94126295"))
   }
@@ -103,8 +103,8 @@ export class GlobalService {
   }
 
   //Denna funktionen är inte färdig än försöker extrakta själva coinen och sen när den har funnits på exchange
-  async coins() {
-   return lastValueFrom(this.http.get("https://min-api.cryptocompare.com/data/blockchain/list"
-      + "?api_key=5c70d697f3b115912447a3065e90b28a69392271de80403eb2548a0f94126295"))
+  coins() {
+   return this.http.get("https://min-api.cryptocompare.com/data/blockchain/list"
+      + "?api_key=5c70d697f3b115912447a3065e90b28a69392271de80403eb2548a0f94126295")
   }
 }
