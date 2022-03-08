@@ -14,16 +14,17 @@ export class GraphViewerComponent implements OnInit {
   startDate: any;
   endDate: any;
   base: any;
+  symbols: any;
   currencies: any;
   cryptos: any;
-
 
   constructor(private global: GlobalService) {
     this.startDate = "";
     this.endDate = "";
     this.base = "";
     this.currencies = ['USD', 'EUR', 'SEK'];
-    this.cryptos = []
+    this.cryptos = [];
+    this.symbols = [];
   }
 
   ngOnInit(): void {
@@ -44,6 +45,10 @@ export class GraphViewerComponent implements OnInit {
   }
 
   async get_historic_rates(coin: string, currency: string, startDate: string, endDate?: string) {
+    console.log(typeof this.startDate)
+    console.log(this.endDate)
+    console.log(this.base)
+    console.log(this.symbols)
     if (endDate) {
       let historic: any
       await this.global.get_histroic(currency, coin, startDate, endDate).then(resp => {

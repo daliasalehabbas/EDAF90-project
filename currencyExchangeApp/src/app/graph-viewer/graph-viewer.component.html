@@ -17,40 +17,39 @@
   </div>
 
   <form>
-    Incredibly basic implementation so far, trying to make it actually work before making it look better
-    <div class="form-group">
-      <label for="startDate">Select start date</label>
-      <input required [(ngModel)]="startDate" name="startDate" id="startDate" type="date" #ngStartDate="ngModel" />
-      <div class='alert alert-danger' *ngIf="ngStartDate.touched && !ngStartDate.valid">
-        You need to pick a starting date
+    <div class="row">
+      <mat-form-field appearance="fill">
+        <mat-label>Select start date</mat-label>
+        <input matInput [matDatepicker]="startPicker" [(ngModel)]="startDate" name="startDate" />
+        <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+        <mat-datepicker #startPicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="fill">
+        <mat-label>Select end date</mat-label>
+        <input matInput [matDatepicker]="endPicker" [(ngModel)]="endDate" name="endDate" />
+        <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+        <mat-datepicker #endPicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <mat-form-field appearance="fill">
+          <mat-label>Select base currency</mat-label>
+          <mat-select [(value)]="base">
+            <mat-option *ngFor="let curr of currencies" [value]="curr">{{curr}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field appearance="fill">
+          <mat-label>Select other currencies</mat-label>
+          <mat-select multiple [(ngModel)]="symbols" name="symbols">
+            <mat-option *ngFor="let curr of cryptos" value={{curr}}>{{curr}}</mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
     </div>
-    <div class="form-group">
-      <label for="endDate">Select end date</label>
-      <input required [(ngModel)]="endDate" name="endDate" id="endDate" type="date" #ngEndDate="ngModel" />
-      <div class='alert alert-danger' *ngIf="ngEndDate.touched && !ngEndDate.valid">
-        You need to pick a ending date
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="base">Select base currency</label>
-      <select required [(ngModel)]="base" name="base" className="form-select" id="base" #ngBase="ngModel">
-        <option *ngFor="let curr of currencies" value={{curr}}>{{curr}}</option>
-      </select>
-      <div class='alert alert-danger' *ngIf="ngBase.touched && !ngBase.valid">
-        You need to pick a base currency
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="symbols">Select currencies to be compared</label>
-      <select required [(ngModel)]="cryptos" name="symbols" className='form-select' id="symbols" multiple
-        #ngSymbols="ngModel">
-        <option *ngFor="let curr of cryptos" value={{curr}}>{{curr}}</option>
-      </select>
-      <div class='alert alert-danger' *ngIf="ngSymbols.touched && !ngSymbols.valid">
-        You need to pick one or more currencies to be compared
-      </div>
-    </div>
-    <input className="btn btn-primary" type="submit" value="Submit" />
   </form>
 </div>
