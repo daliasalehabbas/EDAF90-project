@@ -12,6 +12,7 @@ import { GraphViewerComponent } from './graph-viewer/graph-viewer.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

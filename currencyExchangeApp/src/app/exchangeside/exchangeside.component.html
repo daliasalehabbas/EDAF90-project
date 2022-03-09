@@ -27,11 +27,16 @@
 
 
 <div ngClass="row cols main">
-
+    <div>
     <form class="col" >
         <label for="power"> Total</label>
-        <input  type="number" placeholder="$" class="form-control " id="power" name="total" #total required>
+        <input [(ngModel)]="power" type="number" placeholder="0" class="form-control " id="power" name="power" #totalInput="ngModel" min="0" required>
     </form>
+    <div class='alert alert-danger' *ngIf="totalInput.touched && !totalInput.valid">
+      You need to pick a valid total
+    </div>
+
+    </div>
 
 
     <form class="col">
@@ -48,9 +53,24 @@
     </select>
     </form>
 
-    <label for="power"> </label>
-    <button (click)="getValues(total.value, from.value, to.value)" type="button" class=" btn btn-primary button" >Convert</button> 
 
+     <p>
+       
+      <button type="button" style="margin-top: 10px; "class="btn btn-primary" (click)="getValues(totalInput.value, from.value, to.value)" [attr.aria-expanded]="!isCollapsed"
+        aria-controls="collapseExample">
+        Convert
+      </button>
+    </p>
+    <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+      <div class="card">
+        <div class="card-body">
+          {{total}} {{to.value}}
+        </div>
+      </div>
+    </div>
     
-
+    
 </div>
+
+
+

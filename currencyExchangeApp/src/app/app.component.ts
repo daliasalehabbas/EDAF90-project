@@ -19,24 +19,26 @@ export class AppComponent {
 
   fill_currencies(){
     console.log("filled")
-    this.global.coins().subscribe(rep => {this.cryptos=Object.keys(Object.values(rep)[5])}
-    )
+    return this.global.coins()
   }
   
   ngOnInit(): void {
-   this.fill_currencies()
+  // this.fill_currencies()
   }
 
 
   getCryptos(){
+    this.fill_currencies()
     return this.cryptos
   }
+
+  
 
 
   
 
   method(url:string){
-  return this.httpClient.get("http://api.exchangeratesapi.io/v1/latest?access_key=7ec58f1adbc4b7c0654f3d03687420c6" + url)
+  return this.httpClient.get("http://api.exchangeratesapi.io/v1/latest?access_key=4d58d570cc35e78f921b232ca3a78484" + url)
   }
 
   title = 'currenntExchangeApp';
