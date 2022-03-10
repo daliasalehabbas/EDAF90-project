@@ -11,6 +11,12 @@
     font-size: medium;
 
 }
+.button2{
+  width: 70px;
+  height: 30px;
+  margin-top: 10px;
+  font-size: small;
+}
 
 </style>
 <style>
@@ -46,10 +52,13 @@
   background-color: RoyalBlue;
 } */
 
-.bton:hover {
-  color: #575F65;
+.bton:hover i{
+  /* color: #575F65; */
+  color: #DC3545
   
 }
+
+
 
   </style>
 
@@ -113,20 +122,20 @@
           <form class="col">
             <label for="power">Pick currency you want to observe</label>
             <select class="form-select form-select-lg mb-3 shadow" id="power" #cryptoAlarm required>
-            <option *ngFor="let toCurr of cryptos" [value]="toCurr">{{toCurr}}</option>
+            <option  *ngFor="let toCurr of cryptos" [value]="toCurr">{{toCurr}}</option>
             </select>
             </form>
 
             <form class="col" >
               <label for="power">Price</label>
-              <input [(ngModel)]="power" type="number" placeholder="0" class="form-control form-control-lg shadow-sm" id="power" name="power" #alarmPrice="ngModel" min="0" required>
+              <input [(ngModel)]="power" type="number" placeholder="SEK" class="form-control form-control-lg shadow-sm" id="power" name="power" #alarmPrice="ngModel" min="0" required>
           </form>
           <div class='alert alert-danger' *ngIf="totalInput.touched && !totalInput.valid">
             You need to pick a valid total
           </div>
         </div>
       </div>
-      <button class="btn btn-primary shadow-lg button">Add</button>
+      <button class="btn btn-danger shadow-lg button2" (click)="addToAlarmList(cryptoAlarm.value, alarmPrice.value)">Add</button>
     </div>
   
     

@@ -4,6 +4,8 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { GlobalService } from '../global.service';
 import { NgbModal, ModalDismissReasons, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { map, Subscription, timer } from 'rxjs';
+import { ThisReceiver } from '@angular/compiler';
 
 
 
@@ -22,20 +24,24 @@ export class ExchangesideComponent implements OnInit {
   cryptos:Array<String>;
   regForm:any;
   total:Number;
+  alarmCurrencies: any;
   power: any;
   isCollapsed:boolean;
   isAlarmCollapsed:boolean;
-
+  //timerSubscription: Subscription
   closeResult: any;
+  base: any;
   
   constructor(private httpClient: HttpClient, private formBuilder: FormBuilder, private appcomponent: AppComponent, private global:GlobalService, config: NgbModalConfig, private modalService: NgbModal) {
     this.currencies=new Array();
     this.cryptos=new Array();
     this.total=0;
+    this.alarmCurrencies= {}
     this.power = "";
     this.isCollapsed=true;
     this.isAlarmCollapsed = true;
     this.closeResult="";
+    this.base= "BTC"
    }
 
    getAllRates(){
@@ -59,6 +65,18 @@ export class ExchangesideComponent implements OnInit {
    }
   }
 
+  loadAlarmData() {
+    let obj = JSON.parse(localStorage.getItem('alarmObj') || '{}')
+    if(localStorage.getItem('alarmObj')) {
+      let currencies = Object.keys(obj)
+      console.log('currencies this', currencies)
+      currencies.map(curr => {
+        this.global.get_Price(curr, 'SEK').then(resp => this.alarmCurrencies[curr] = Object.create(resp)[curr]['SEK'])
+      })
+      
+    }
+  }
+
   ngOnInit(): void {
     console.log("im here")
     this.getAllRates()
@@ -67,10 +85,40 @@ export class ExchangesideComponent implements OnInit {
     console.log("after", this.cryptos)
 
     this.regForm=this.formBuilder.group({})
+    this.loadAlarmData()
+    // this.timerSubscription = timer(0, 10000).pipe( 
+    //   map(() => { 
+    //     this.loadAlarmData(); // load data contains the http request 
+    //   }) 
+    // ).subscribe();
+  }
+//work in progess
+  // checkAlarm() {
+  //   let obj = JSON.parse(localStorage.getItem('alarmObj') || '{}')
+  //   if(localStorage.getItem('alarmObj'))
+  //   Object.entries(this.alarmCurrencies).map(([curr, value], i) => {
+  //     if (obj[curr] <= Number(value)) {
+  //       return true;
+  //     }
+  //   })
+  //   return false
+  // }
+
+  addToAlarmList(crypto: string, price: string) {
+    let obj = JSON.parse(localStorage.getItem('alarmObj') || '{}')
+    if(localStorage.getItem('alarmObj')) {
+      obj[crypto] = price
+      localStorage.setItem('alarmObj', JSON.stringify(obj))
+    } else {
+      obj = {[crypto]: price}
+      localStorage.setItem('alarmObj', JSON.stringify(obj) )
+    }
+    console.log('alarmobj',obj)
   }
 
   toggleAlarm() {
     this.isAlarmCollapsed = !this.isAlarmCollapsed;
+    console.log('alarm currencies', this.alarmCurrencies)
   }
   
   open(content:any) {
