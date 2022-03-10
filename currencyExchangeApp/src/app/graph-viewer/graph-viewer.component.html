@@ -7,32 +7,39 @@
     flex-direction: column;
     align-items: center;
   }
+
+
+  .graph-container {
+    display: flex;
+    margin: 82px auto 32px;
+    padding: 0 16px;
+    max-width: 960px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .button-row {
+    display: flex;
+    max-width: 800px;
+    flex-direction: row;
+    align-items: center;
+  }
+  .selection-form{
+    margin-top: 30px;
+  }
+
+  .select-header{
+    color: #2c2ea1;
+  }
+  
+
 </style>
 
 <div class="content" role="main">
-  <div class="card-container row h-200 p-5 bg-light border rounded-10">
-    <button type="button" class="btn btn-primary" (click)="get_historic_rates('BTC','USD', '2020.01.01', '2022.01.01')">
-      Test API callknapp
-    </button>
-  </div>
 
-  <form>
-    <div class="row">
-      <mat-form-field appearance="fill">
-        <mat-label>Select start date</mat-label>
-        <input matInput [matDatepicker]="startPicker" [(ngModel)]="startDate" name="startDate" />
-        <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
-        <mat-datepicker #startPicker></mat-datepicker>
-      </mat-form-field>
-    </div>
-    <div class="row">
-      <mat-form-field appearance="fill">
-        <mat-label>Select end date</mat-label>
-        <input matInput [matDatepicker]="endPicker" [(ngModel)]="endDate" name="endDate" />
-        <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
-        <mat-datepicker #endPicker></mat-datepicker>
-      </mat-form-field>
-    </div>
+  <h3 class="select-header">Select a Coin and Currency</h3> 
+
+  <form class='selection-form'>
     <div class="row">
       <div class="col-6">
         <mat-form-field appearance="fill">
@@ -45,11 +52,29 @@
       <div class="col-6">
         <mat-form-field appearance="fill">
           <mat-label>Select other currencies</mat-label>
-          <mat-select multiple [(ngModel)]="symbols" name="symbols">
+          <mat-select multiple [(ngModel)]="coin" name="symbols">
             <mat-option *ngFor="let curr of cryptos" value={{curr}}>{{curr}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
     </div>
   </form>
+
+</div>
+
+
+<div class='graph-container'>
+  <canvas id='canvas' max-height='350' max-width='400'>
+    {{chart}}
+  </canvas>
+  <div class="button-row">
+    <button mat-button style="margin-right:40px" (click)="set_duration('default')">24 Hours</button>
+    <button mat-button style="margin-right:40px" (click)="set_duration('week')" >Week</button>
+    <button mat-button style="margin-right:40px" (click)="set_duration('month')">Month</button>
+    <button mat-button style="margin-right:40px" (click)="set_duration('this year')">This Year</button>
+    <button mat-button style="margin-right:40px" (click)="set_duration('1 year')">1 Year</button>
+    <button mat-button style="margin-right:40px" (click)="set_duration('3 years')">3 Years</button>
+    <button mat-button style="margin-right:40px" (click)="set_duration('5 years')">5 Years</button>
+    <button mat-button  (click)="set_duration('all time')">Max</button>
+  </div>
 </div>
