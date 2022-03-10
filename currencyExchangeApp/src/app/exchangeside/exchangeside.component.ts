@@ -3,13 +3,16 @@ import {AppComponent} from '../app.component'
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { GlobalService } from '../global.service';
+import { NgbModal, ModalDismissReasons, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 
 
 
 @Component({
   selector: 'app-exchangeside',
   templateUrl: './exchangeside.component.html',
-  styleUrls: ['./exchangeside.component.css']
+  styleUrls: ['./exchangeside.component.css'],
+  providers: [NgbModalConfig, NgbModal]
+
 })
 
 
@@ -21,17 +24,22 @@ export class ExchangesideComponent implements OnInit {
   total:Number;
   power: any;
   isCollapsed:boolean;
+  isAlarmCollapsed:boolean;
+
+  closeResult: any;
   
-  constructor(private httpClient: HttpClient, private formBuilder: FormBuilder, private appcomponent: AppComponent, private global:GlobalService) {
+  constructor(private httpClient: HttpClient, private formBuilder: FormBuilder, private appcomponent: AppComponent, private global:GlobalService, config: NgbModalConfig, private modalService: NgbModal) {
     this.currencies=new Array();
     this.cryptos=new Array();
     this.total=0;
     this.power = "";
     this.isCollapsed=true;
+    this.isAlarmCollapsed = true;
+    this.closeResult="";
    }
 
    getAllRates(){
-  console.log("we are in")
+   console.log("we are in")
    let response = this.appcomponent.method('').subscribe(res =>{  this.currencies = Object.keys(Object.create(res).rates) })
    console.log("currencies", this.currencies)
 
@@ -61,8 +69,13 @@ export class ExchangesideComponent implements OnInit {
     this.regForm=this.formBuilder.group({})
   }
 
+  toggleAlarm() {
+    this.isAlarmCollapsed = !this.isAlarmCollapsed;
+  }
   
-
+  open(content:any) {
+    this.modalService.open(content);
+  }
   
 
 }
