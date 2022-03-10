@@ -15,40 +15,46 @@
       Test API callknapp
     </button>
   </div>
-
+  <h2>Cryptocurrency Graph</h2>
   <form>
-    <div class="row">
-      <mat-form-field appearance="fill">
-        <mat-label>Select start date</mat-label>
-        <input matInput [matDatepicker]="startPicker" [(ngModel)]="startDate" name="startDate" />
-        <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
-        <mat-datepicker #startPicker></mat-datepicker>
-      </mat-form-field>
-    </div>
-    <div class="row">
-      <mat-form-field appearance="fill">
-        <mat-label>Select end date</mat-label>
-        <input matInput [matDatepicker]="endPicker" [(ngModel)]="endDate" name="endDate" />
-        <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
-        <mat-datepicker #endPicker></mat-datepicker>
-      </mat-form-field>
-    </div>
     <div class="row">
       <div class="col-6">
         <mat-form-field appearance="fill">
           <mat-label>Select base currency</mat-label>
           <mat-select [(value)]="base">
-            <mat-option *ngFor="let curr of currencies" [value]="curr">{{curr}}</mat-option>
+            <mat-optgroup label="Favourites">
+              <mat-option *ngFor="let favs of get_favourite_bases()" [value]="favs">{{favs}}</mat-option>
+            </mat-optgroup>
+            <mat-optgroup label="All">
+              <mat-option *ngFor="let curr of currencies" [value]="curr">{{curr}}</mat-option>
+            </mat-optgroup>
           </mat-select>
         </mat-form-field>
       </div>
       <div class="col-6">
         <mat-form-field appearance="fill">
-          <mat-label>Select other currencies</mat-label>
-          <mat-select multiple [(ngModel)]="symbols" name="symbols">
-            <mat-option *ngFor="let curr of cryptos" value={{curr}}>{{curr}}</mat-option>
+          <mat-label>Select cryptocurrency</mat-label>
+          <mat-select [(value)]="symbol">
+            <mat-optgroup label="Favourites">
+              <mat-option *ngFor="let favs of get_favourite_symbols()" [value]="favs">{{favs}}</mat-option>
+            </mat-optgroup>
+            <mat-optgroup label="All">
+              <mat-option *ngFor="let cryp of cryptos" value={{cryp}}>{{cryp}}</mat-option>
+            </mat-optgroup>
           </mat-select>
         </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <button mat-icon-button (click)="add_favourite_base(base)">
+          <mat-icon>favorite</mat-icon> Add to favourites
+        </button>
+      </div>
+      <div class="col-6">
+        <button mat-icon-button (click)="add_favourite_symbol(symbol)">
+          <mat-icon>favorite</mat-icon> Add to favourites
+        </button>
       </div>
     </div>
   </form>
