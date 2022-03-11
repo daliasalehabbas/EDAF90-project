@@ -57,15 +57,19 @@
   color: #DC3545
   
 }
-
-
-
   </style>
 
 
 <!-- ngClass="row main jumbotron custom" -->
 <div  ngClass="row h-200 p-5 bg-light border rounded-100 shadow-lg main"
 >
+<div class="alert alert-primary alert-dismissible" role="alert" *ngFor="let message of messages" >
+ <strong>Currency Alarm!</strong> <br>
+  {{message}}
+  <button (click)="close(message)" type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
     <div>
     <form class="col" >
         <label for="power"> Total</label>
@@ -138,7 +142,7 @@
       <button class="btn btn-danger shadow-lg button2" (click)="addToAlarmList(cryptoAlarm.value, alarmPrice.value)">Add</button>
     </div>
   
-    
+
 </div>
 
 

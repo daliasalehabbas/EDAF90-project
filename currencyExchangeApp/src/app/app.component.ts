@@ -38,7 +38,7 @@ export class AppComponent {
   
 
   method(url:string){
-  return this.httpClient.get("http://api.exchangeratesapi.io/v1/latest?access_key=4d58d570cc35e78f921b232ca3a78484" + url)
+  return this.httpClient.get("http://api.exchangeratesapi.io/v1/latest?access_key=08d343f2363677fcb874c26cb07f5bdf" + url)
   }
 
   title = 'currenntExchangeApp';
