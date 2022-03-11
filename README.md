@@ -1,3 +1,4 @@
 # EDAF90-project
-hej
-hej
+How to run application:
+1. cd into currencyExchange folder
+2. run ng serve --open
