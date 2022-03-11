@@ -152,6 +152,10 @@ export class GraphViewerComponent implements OnInit {
     return JSON.parse(<string> window.localStorage.getItem('base'))
   }
 
+  remove_favourite_bases() {
+    window.localStorage.removeItem('base');
+  }
+
   add_favourite_symbol(symbol: string) {
     if (symbol == '') {
 
@@ -166,6 +170,10 @@ export class GraphViewerComponent implements OnInit {
 
   get_favourite_symbols() {
     return JSON.parse(<string> window.localStorage.getItem('symbols'))
+  }
+
+  remove_favourite_symbols() {
+    window.localStorage.removeItem('symbols');
   }
 
   get_date_diff() {

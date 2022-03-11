@@ -32,7 +32,13 @@
     color: #2c2ea1;
   }
   
+  .fav{
+    color: black
+  }
 
+  .fav:hover{
+    color: pink
+  }
 </style>
 
 <div class="content" role="main">
@@ -71,12 +77,24 @@
     <div class="row">
       <div class="col-6">
         <button mat-icon-button (click)="add_favourite_base(base)">
-          <mat-icon>favorite</mat-icon> Add to favourites
+          <mat-icon class="fav">favorite</mat-icon> Add to favourites
         </button>
       </div>
       <div class="col-6">
         <button mat-icon-button (click)="add_favourite_symbol(symbol)">
-          <mat-icon>favorite</mat-icon> Add to favourites
+          <mat-icon class="fav">favorite</mat-icon> Add to favourites
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <button mat-icon-button (click)="remove_favourite_bases()">
+          <mat-icon>delete</mat-icon> Remove all favourites
+        </button>
+      </div>
+      <div class="col-6">
+        <button mat-icon-button (click)="remove_favourite_symbols()">
+          <mat-icon>delete</mat-icon> Remove all favourites
         </button>
       </div>
     </div>
