@@ -62,7 +62,7 @@ export class GlobalService {
 
   async get_Price(crypto_coins: string, currencies: string) {
     return lastValueFrom(this.http.get("https://min-api.cryptocompare.com/data/pricemulti?fsyms=" + crypto_coins + "&tsyms=" + currencies +
-      "&?api_key=5c70d697f3b115912447a3065e90b28a69392271de80403eb2548a0f94126295"))
+      "&?api_key=782d4b99733edef71cd914c6aa22ce9de82438f9fc3b37e716b0a97f65a8e4a7"))
   }
 
   convert_date_to_unix(YYYYMMDD: string): number {
