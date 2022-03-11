@@ -16,6 +16,16 @@
   height: 30px;
   margin-top: 10px;
   font-size: small;
+  font: caption;
+  background-color: goldenrod;
+  color: white;
+  align-items: center;
+
+}
+
+
+.button2:hover{
+  background-color: rgb(140, 104, 14) ;
 }
 
 </style>
@@ -54,7 +64,7 @@
 
 .bton:hover i{
   /* color: #575F65; */
-  color: #DC3545
+  color: goldenrod
   
 }
   </style>
@@ -117,7 +127,7 @@
     <p>
       <button type="button" style="border: none;" class="bton" (click)="toggleAlarm()" [attr.aria-expanded]="!isAlarmCollapsed"
         aria-controls="collapseExample">
-      <i class="fa fa-bell"> </i> CreateAlarm
+      <i class="fa fa-bell"> </i> Create Alarm
       </button>
     </p>
     <div #collapse="ngbCollapse" [(ngbCollapse)]="isAlarmCollapsed">
@@ -139,7 +149,7 @@
           </div>
         </div>
       </div>
-      <button class="btn btn-danger shadow-lg button2" (click)="addToAlarmList(cryptoAlarm.value, alarmPrice.value)">Add</button>
+      <button class="btn shadow-lg button2" (click)="addToAlarmList(cryptoAlarm.value, alarmPrice.value)">Add</button>
     </div>
   
 
